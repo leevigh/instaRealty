@@ -1,0 +1,47 @@
+.logincard {
+    margin: 2rem;
+    background-color: #fff;
+    border-radius: 0.3rem;
+    padding: 1rem;
+}
+
+.logincard__form {
+    display: flex;
+    flex-direction: column;
+    margin: 3rem auto;
+    width: 85%;
+}
+
+.form__form-control {
+    margin-bottom: 1rem;
+}
+
+.form__form-control {
+    padding: 0.5rem;
+    background-color: rgb(56, 58, 80);
+    border: 0.3px solid rgb(39, 41, 56);
+    color: white;
+}
+.form__form-control:hover {
+    border-color: rgb(139, 131, 131);
+}
+.form__form-control:focus {
+    border-color: rgb(139, 131, 131);
+    outline: none;
+}
+
+.form__submit-button {
+    padding: 0.5rem;
+    background-color: #4c9aff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.card {
+    box-shadow: -10px 10px 0px 0px #EBEBEB;
+}
+
+.login__image {
+    background-image: url('https://images.unsplash.com/photo-1532429262565-d042941d1177?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80');
+}
