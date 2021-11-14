@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import menu from '../icons/menu.svg'
 import '../Navigation.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { logout } from '../store/auth'
 import { Container, Button, Navbar, Offcanvas, Col, Row, Image } from 'react-bootstrap'
 
@@ -45,7 +45,7 @@ const Navigation = () => {
                         </Form> : 
                         <span onClick={toggleSearch}>Search Icon</span>} */}
 
-                        {isLoggedIn && user.role === "landlord" ? <Button className="container__button--green" variant="outline-success">+ Create Rental</Button> : <div></div>}
+                        {isLoggedIn && user.role === "landlord" ? <Link to="/create-rental"><Button className="container__button--green" variant="outline-success">+ Create Rental</Button></Link> : <div></div>}
                         
                     </Container>
                     </Col>

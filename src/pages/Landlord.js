@@ -27,27 +27,12 @@ const Landlord = () => {
     return (
         <div className="body__layout">
             <Navigation />
-            {/* <Container>
-                <Navbar className="container__nav" expand="false" variant="light" bg="light">
-                    <Container style={{  width: "2rem", margin: "0 1.5rem"}}>
-                        <img className="container__menu-icon" src={menu} alt="menu icon"/>
-                    </Container>
-
-                    <Container>
-                        <span>InstaRealty</span>
-                    </Container>
-
-                    <Container className="nav__container">
-                        <Button className="container__button--green" variant="outline-success">+ Create Rental</Button>
-                    </Container>
-                </Navbar>
-            </Container> */}
 
             <Row>
-                <h2>{user && user.name}</h2>
+                {/* <h2>{user && user.name}</h2>
                 <Col>
                     <Button onClick={handleLogout} className="btn-danger">Logout</Button>
-                </Col>
+                </Col> */}
                 <Container>
                     <div className="card">
                         <div className="card__body">

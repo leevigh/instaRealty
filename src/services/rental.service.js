@@ -1,22 +1,13 @@
 import axios from 'axios'
+import authHeader from '../helper/auth-header'
 
 const getRentals = () => {
-    return axios.post('rentals/');
+    return axios.get('rentals/');
 }
 
-// const login = async (user) => {
-//     const result = await axios.post('users/login', user)
-    
-//     if(result.data.token) {
-//         localStorage.setItem("user", JSON.stringify(result.data))
-//     }
+const createRental = (rental) => {
+    return axios.post('rentals/', rental, {headers: authHeader()})
+}
 
-//     return result.data
-// }
-
-// const logout = () => {
-//     localStorage.removeItem("user")
-// }
-
-// const authService = { register, login, logout }
-// export default authService;
+const rentalService = { getRentals, createRental }
+export default rentalService;
