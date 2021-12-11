@@ -1,79 +1,45 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Form, ListGroup, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import Navigation from '../components/Navigation'
 import RentalMap from '../components/RentalMap'
 import Rating from '../components/Rating'
-import RentalService from '../services/rental.service'
-import { createRentalReview, getRentals } from '../store/rentalsSlice'
+import { createRentalReview } from '../store/rentalsSlice'
 import { getRental } from '../store/selectedRentalSlice'
 
 import '../styles/Listing.css'
-import axios from 'axios'
 
 const Listing = () => {
-    const rental = useSelector(state => state)
-    const {isLoggedIn} = useSelector(state => state.auth)
     const params = useParams()
     const dispatch = useDispatch()
+    const {isLoggedIn} = useSelector(state => state.auth)
+    const {status, rental} = useSelector(state => state.rental)
 
 
+    const [lat, setLat] = useState(0)
+    const [lng, setLng] = useState(0)
     const [rating, setRating] = useState(1)
     const [comment, setComment] = useState('')
-    // const [latlng, setLatlng] = useState([])
-    const [lat, setLat] = useState('')
-    const [lng, setLng] = useState('')
-
-    console.log("Rental>> ", rental)
-
-    const getRentalDetail = async (rental) => {
-
-        // dispatch(getRental(params.id))
-        // .then(res => console.log(res))
-        // .catch(err => console.log("Err ", err))
-
-        // console.log("I'M FUCKING HERE!!! >>>  ", rental)
-
-        const latlng = rental && rental.coordinates
-        console.log(latlng)
-        // setLatlng(rental?.data?.coordinates.split(' '))
-
-        console.log("TOP LOG, RENTAL ", rental)
-
-        console.log("COORDS ",rental.coordinates)
-        console.log("Rental(!important)>>> ", rental)
-
-        console.log(latlng)
-
-        let lat = latlng && latlng[0]
-        let lng = latlng && latlng[1]
-
-        setLat(parseFloat(lat))
-        setLng(parseFloat(lng))
-    }
-
     
-    useEffect(() => {
+    React.useEffect(() => {
         if(params.id && params.id !== "") {
-            console.log("PARAMS ",params)
-            // getRentalDetail()
             dispatch(getRental(params.id))
         }
-        // console.log("Rental>> ", rental)
     }, [dispatch, params])
 
-    useEffect(() => {
-        if(rental !== {}){
-
-            getRentalDetail(rental)
+    React.useEffect(() => {
+        if(status==='done' && rental){
+            const cordStr = rental?.coordinates??""
+            const [lat, lng] = cordStr.split(" ")
+            setLat(parseFloat(lat))
+            setLng(parseFloat(lng))
         }
-        console.log("Rental>> ", rental)
-    }, [rental])
-
+    }, [rental, status])
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        
         // const formData = new FormData()
 
         // formData.append('rating', rating)
@@ -94,13 +60,7 @@ const Listing = () => {
         setComment('')
     }
 
-    // console.log(parseInt(rating))
-
-    // const latlng = rental.data.coordinates.split(' ')
-    // const lat = parseFloat(latlng[0])
-    // const lng = parseFloat(latlng[1])
-    console.log(lat, lng)
-
+    if (status === 'loading') return <div>Loading...</div>
 
     return (
         <div>

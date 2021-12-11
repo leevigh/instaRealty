@@ -7,17 +7,13 @@ export const getRental = createAsyncThunk('rental/get-rental', async(id) => {
     try {
         const response = await RentalService.getRental(id)
         const { data } = response.data
-
-        // console.log("got a rental", response.data)
-        console.log("Response>>>>  ", response.data.data)
         return data
     } catch (error) {
-        console.log("ERROR ", error)
         return error
     }
 })
 
-const initialState = {rental: {}};
+const initialState = {status: 'loading', rental: {}};
 
 const selectedRentalSlice = createSlice({
     name: "rental",
@@ -25,10 +21,12 @@ const selectedRentalSlice = createSlice({
     extraReducers: {
         [getRental.fulfilled]: (state, action) => {
             state.rental = action.payload
+            state.status = 'done'
         },
 
         [getRental.rejected]: (state) => {
-            return state.rental
+            state.status = 'error'
+            return state
         },
     }
 })
