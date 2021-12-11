@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 // import axios from 'axios'
 import { login } from '../store/auth'
-import '../Login.css'
+import '../styles/Login.css'
 import { Form, Button, Container, Col, Row } from 'react-bootstrap'
 
 import Navigation from '../components/Navigation'
@@ -14,7 +14,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false)
 
     const dispatch = useDispatch();
-    const {user, isLoggedIn} = useSelector(state => state.auth)
+    // const {user, isLoggedIn} = useSelector(state => state.auth)
 
     const navigate = useNavigate();
 
@@ -55,13 +55,15 @@ const Login = () => {
         <div className="body__layout">
             <Navigation />
             <Container>
-            <Row>
-                <Col sm={4} className="mx-auto" >
+            <Row className="mx-auto">
+                <Col sm={4} md={12} className="mx-auto" >
                     <Form onSubmit={handleSubmit} className="card p-4">
+                        <h4 style={{color: '#0d6efd'}}>Login</h4>
                         <Form.Control onChange={e => setEmail(e.target.value) } value={email} className="my-3" type="email" placeholder="Email" />
 
                         <Form.Control onChange={e => setPassword(e.target.value)} value={password} className="my-3" type="password" placeholder="Password" />
                         <Button className="form__submit-button" type="submit" disabled={loading}>Login</Button>
+                        <p>Not registered? <Link to='/register'>Create an account</Link></p>
                     </Form>
                 </Col>
                 

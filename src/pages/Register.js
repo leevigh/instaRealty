@@ -36,9 +36,10 @@ const Register = () => {
         <div className="body__layout">
             <Navigation />
             <Container>
-            <Row>
-                <Col sm={4} className="mx-auto" >
+            <Row className="mx-auto">
+                <Col sm={4} md={12} className="mx-auto" >
                     <Form onSubmit={handleSubmit} className="card p-4">
+                        <h4 style={{color: '#0d6efd'}}>Register</h4>
                         <Form.Control onChange={e => setName(e.target.value) } value={name} className="my-3" type="text" placeholder="Full name" />
                     
                         <Form.Control onChange={e => setEmail(e.target.value) } value={email} className="my-3" type="email" placeholder="Email" />

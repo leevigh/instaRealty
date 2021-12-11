@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { createRental } from '../store/rental'
+import { createRental } from '../store/rentalsSlice'
 import Navigation from './Navigation'
 import { Container, Form, Button, Row, Col} from 'react-bootstrap'
 
@@ -49,8 +49,8 @@ const RentalForm = () => {
         <div>
             <Navigation />
             <Container>
-            <Row>
-                <Col sm={4} className="mx-auto" >
+            <Row className="mx-auto">
+                <Col sm={4} md={12} className="mx-auto" >
                     <Form onSubmit={handleSubmit} className="card p-4">
                         <Form.Control onChange={e => setPropertyType(e.target.value) } value={propertyType} className="my-3" type="text" placeholder="Property Type(ex. 2 Bedroom Apartment)" name="" />
 
