@@ -1,9 +1,11 @@
 .container__nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     background-color: #fff;
     border-bottom: 1px solid grey;
     padding: 1rem 0;
+    /* width: 100%; */
+    margin: 0 1.5rem 0 1.5rem;
 }
 
 .container__menu-icon {
@@ -11,11 +13,24 @@
     color: red;
 }
 
-/* .nav__container {
+.nav__container {
+    
+}
+.nav__container-links {
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
-} */
+}
+.nav__container-linkReg {
+    border: 1px solid grey;
+    padding: 0.3rem;
+    margin-right: 0.6rem;
+    border-radius: 3px;
+}
+.nav__container-linkLog {
+    border: 1px solid grey;
+    padding: 0.3rem;
+    border-radius: 3px;
+}
 
 .form {
     display: flex;

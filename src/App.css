@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Rubik&display=swap');
 
-.App {
-  text-align: center;
+ .App {
   font-family: 'Rubik', sans-serif;
   font-size: 1rem;
 }
-
+/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -43,4 +42,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import menu from '../icons/menu.svg'
-import '../Navigation.css'
+import '../styles/Navigation.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { logout } from '../store/auth'
 import { Container, Button, Navbar, Offcanvas, Col, Row, Image } from 'react-bootstrap'
 
@@ -23,32 +23,34 @@ const Navigation = () => {
 
     return (
         // <div style={{margin: '0', padding: '0'}}>
-            <Container fluid>
+            // <Container>
                 <Navbar className="container__nav" expand="false" variant="light" bg="light">
-                    <Col>
-                    <Container style={{  width: "2rem", margin: "0 1.5rem"}}>
+                    {/* <Col> */}
+                    <div style={{  width: "2rem"}}>
                         <img onClick={handleShow} className="container__menu-icon" src={menu} alt="menu icon"/>
-                    </Container>
-                    </Col>
+                    </div>
+                    {/* </Col> */}
 
-                    <Col>
-                    <Container>
-                        <span>🏘 InstaRealty</span>
-                    </Container>
-                    </Col>
+                    {/* <Col> */}
+                    <div>
+                        <Link to="/" style={{textDecoration: 'none', color: 'black'}}>
+                        <span style={{color: 'green'}}>🏘 <strong>InstaRealty</strong></span>
+                        </Link>
+                    </div>
+                    {/* </Col> */}
 
-                    <Col>
-                    <Container className="nav__container">
-                        {/* {search ? 
-                        <Form className="form" onSubmit={toggleSearch}>
-                            <Form.Control className="container__form-control" type="text" placeholder="Search Rentals" />
-                        </Form> : 
-                        <span onClick={toggleSearch}>Search Icon</span>} */}
+                    {/* <Col> */}
+                    <div className="nav__container">
 
-                        {isLoggedIn && user.role === "landlord" ? <Button className="container__button--green" variant="outline-success">+ Create Rental</Button> : <div></div>}
+                        {!isLoggedIn ? 
+                        <div className="nav__container-links">
+                            <div className="nav__container-linkReg"><Link to="/register" style={{textDecoration: 'none', color: 'black', }}>Register</Link></div>
+                            <div className="nav__container-linkLog"><Link to="/login" style={{textDecoration: 'none', color: 'black'}}>Login</Link></div>
+                        </div> : <div></div>}
+                        {isLoggedIn && user.role === "landlord" ? <div><Link to="/create-rental"><Button className="container__button--green" variant="outline-success">+ Create Rental</Button></Link></div> : <div></div>}
                         
-                    </Container>
-                    </Col>
+                    </div>
+                    {/* </Col> */}
 
                     <Offcanvas show={show} onHide={handleClose}>
                         <Offcanvas.Header closeButton>
@@ -67,7 +69,7 @@ const Navigation = () => {
                         </Offcanvas.Body>
                     </Offcanvas>
                 </Navbar>
-            </Container>
+            // </Container>
         // </div>
     )
 }
