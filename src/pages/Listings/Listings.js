@@ -5,14 +5,15 @@ import { getRental } from '../../store/selectedRentalSlice'
 import { Link } from 'react-router-dom'
 import { Container, Button, Col} from 'react-bootstrap'
 import Navigation from '../../components/Navigation'
-
+import { useNavigate } from 'react-router-dom'
 import './Listings.css'
 import Rating from '../../components/Rating'
 
 const Listings = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const {rentals} = useSelector(state => state.rentals)
-
+    
     useEffect(() => {
         dispatch(getRentals())
     }, []);
@@ -41,7 +42,10 @@ const Listings = () => {
                             </div>
                             <div>
                                 <Link to={`/${rental._id}`}>
-                                <Button onClick={() => dispatch(getRental(rental._id))}  className="btn btn-success">Details</Button>
+                                <Button 
+                                    // onClick={() => dispatch(getRental(rental._id))} 
+                                    onClick={() => navigate(`/${rental._id}`)}
+                                    className="btn btn-success">Details</Button>
                                 </Link>
                             </div>
                         </div>
