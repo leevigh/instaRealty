@@ -3,8 +3,9 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import axios from 'axios'
 import { useParams } from 'react-router'
 import authHeader from '../helper/auth-header'
+import Navigation from './Navigation'
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ amount }) => {
     const stripe = useStripe()
     const elements = useElements()
     const params = useParams()
@@ -22,7 +23,7 @@ const CheckoutForm = () => {
             try {
                 const { id } = paymentMethod;
                 const response = await axios.post(
-                `rent/payment`,
+                `rentals/${params.id}/payment`,
                 {
                 amount: 999,
                 id: id,
@@ -43,10 +44,13 @@ const CheckoutForm = () => {
     }
 
     return (
+        <>
+        <Navigation />
         <form onSubmit={handleSubmit}>
             <CardElement />
             <button type="submit" className="btn btn-success">Pay</button>
         </form>
+        </>
     )
 }
 

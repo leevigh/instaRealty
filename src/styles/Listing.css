@@ -1,9 +1,14 @@
-.container {
+.details-container {
+    margin: 1.5rem;
+}
+
+.details-container__image-map {
     display: flex;
     margin-top: 1rem;
 }
 
 .property-image__container {
+    margin-left: 0;
     height: 70vh;
     width: 50%;
 }
@@ -18,4 +23,29 @@
     height: 70vh;
     
     margin-left: 1rem;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.rent-btn {
+    border: 1px solid green;
+}
+.rent-btn:hover {
+    background-color: green;
+    color: white;
+}
+
+.book-btn {
+    border: 1px solid green;
+}
+.book-btn:hover {
+    background-color: green;
+    color: white;
+}
+
+.submit-btn {
+    border: 1px solid green;
 }

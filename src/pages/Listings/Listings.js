@@ -12,18 +12,20 @@ import Rating from '../../components/Rating'
 const Listings = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {rentals} = useSelector(state => state.rentals)
+    const {status, rentals} = useSelector(state => state.rentals)
     
     useEffect(() => {
         dispatch(getRentals())
-    }, []);
+    }, [dispatch]);
 
     console.log(rentals.data)
 
+    // if(status === "loading") return <div>Loading...</div>
     return (
         <div>
         {/* <div className="mx-auto"> */}
             <Navigation />
+            {status === "loading" ? <div>Loading...</div> : status === "error" ? <div>{rentals.name}</div> :
             <section className='listing' >
                 {/* <Col lg={4}> */}
                 <div class="row my-4">
@@ -34,8 +36,9 @@ const Listings = () => {
                             <i className="far fa-heart favorite"></i>
                         </span>
                         <div className="my-3">
-                            <h5>{rental.propertyType}</h5>
-                            <span className="price">N{rental.price}</span>
+                            {/* <h5>{rental.propertyType}</h5> */}
+                            <span className="price">&#8358;{rental.price}/yr</span>
+                            <p>{rental.address}</p>
                             
                             <div>
                                 <Rating value={rental.ratings} text={`(${rental.numReviews})`} color="#f8e825" />
@@ -45,7 +48,7 @@ const Listings = () => {
                                 <Button 
                                     // onClick={() => dispatch(getRental(rental._id))} 
                                     onClick={() => navigate(`/${rental._id}`)}
-                                    className="btn btn-success">Details</Button>
+                                    className="details-btn mt-2" variant="default">Details</Button>
                                 </Link>
                             </div>
                         </div>
@@ -54,7 +57,7 @@ const Listings = () => {
                 </div>
                 {/* </Col> */}
             </section>
-
+            }
         </div>
     )
 }

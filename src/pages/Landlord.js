@@ -1,6 +1,7 @@
 import React from 'react'
 import '../styles/Landlord.css'
-import { Container, Row, Button, Col } from 'react-bootstrap'
+import { Row, Button, Col } from 'react-bootstrap'
+import styled from 'styled-components'
 // import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,10 +13,21 @@ const Landlord = () => {
     let navigate = useNavigate()
     const dispatch = useDispatch()
     const { user } = useSelector(state => state.auth)
+
+    const [subAccount, setSubAccount] = React.useState({
+        businessName: '',
+        settlementBank: '',
+        accountNumber: '',
+        percentage_charge: 0.1
+    }) 
     // console.log(user)
     const handleLogout = () => {
         dispatch(logout());
         navigate('../login', {replace: true})
+    }
+
+    const handleSubmit = () => {
+        // const details
     }
     // console.log(user)
     // const [search, setSearch] = useState(false)
@@ -25,71 +37,62 @@ const Landlord = () => {
     // }
 
     return (
-        <div className="body__layout">
+        <Wrapper>
             <Navigation />
 
-            <Row>
-                {/* <h2>{user && user.name}</h2>
-                <Col>
-                    <Button onClick={handleLogout} className="btn-danger">Logout</Button>
-                </Col> */}
-                <Container>
-                    <div className="card">
-                        <div className="card__body">
-                            <h5>Rentals</h5>
-                            <div className="card__body--row">
-                                <h2>4</h2>
-                            </div>
-                        </div>
-                    </div>
-                </Container>
-                <Container>
-                    <div className="card">
-                        <div className="card__body">
-                            <h5>Rentals</h5>
-                            <div className="card__body--row">
-                                <h2>4</h2>
-                            </div>
-                        </div>
-                    </div>
-                </Container>
-            </Row>
-            {/* <Container className="container" fluid>
-                <Navbar className="container__nav" expand="false" variant="light" bg="light">
-                    
+            <h2>My rentals</h2>
+            <Container>
+                <Card>
+                    {/* <CardTitle>My proper</CardTitle> */}
+                    <CardBody>
+                        <h3>Location</h3>
+                        <h3>Occupied</h3>
+                        <h3>Price</h3>
+                        <h3>Tenant</h3>
+                        <h3>Tenancy Expiration Date</h3>
+                    </CardBody>
+                </Card>
 
-                    
+                <form onSubmit={handleSubmit}>
+                    <label>business name</label>
+                    <input type="text" value={subAccount.businessName} onChange={e => setSubAccount(e.target.value)} />
+                    <label>settlement bank</label>
+                    <input type="text" value={subAccount.settlementBank} onChange={e => setSubAccount(e.target.value)} />
+                    <label>account number</label>
+                    <input type="text" value={subAccount.accountNumber} onChange={e => setSubAccount(e.target.value)} />
+                    <button type="submit">Send</button>
+                </form>
 
-                    <Container>
-                        <Form.Control className="container__form-control" type="text" placeholder="Search Rentals" />
-                    
-                        <Button className="container__button--green" variant="outline-success">+ Create Rental</Button>
-                    </Container>
-                </Navbar>
-                <Container>
-                        <Navbar.Toggle className="container__toggle-open" aria-controls="offcanvasNavbar" />
-                        <Navbar.Offcanvas
-                        id="offcanvasNavbar"
-                        aria-labelledby="offcanvasNavbarLabel"
-                        placement="start"
-                        />
-                    </Container>
-
-                <Container className="aside">
-                        <Navbar.Offcanvas className="aside__offcanvas">
-                        <Offcanvas.Header className="aside__toggle-close" closeButton>
-                            <Offcanvas.Title id="offcanvasNavbarLabel">Offcanvas</Offcanvas.Title>
-                        </Offcanvas.Header>
-                            <Offcanvas.Body>
-                                <Form className="d-flex">
-                                <Button variant="outline-success">Search</Button>
-                                </Form>
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
-                    </Container>
-            </Container> */}
-        </div>
+            </Container>
+        </Wrapper>
     )
 }
+
+const Wrapper = styled.div`
+    max-width: 600px;
+    width: 100%
+    border: 1px solid black
+    display: flex;
+    flex-direction: column;
+`
+
+const Container = styled.div`
+    width: 100%;
+    padding: 2rem;
+
+`
+const Card = styled.div`
+    width: 100%;
+    border: 1px solid black;
+`
+const CardTitle = styled.div`
+
+`
+const CardBody = styled.div`
+    h3 {
+
+        font-size: 14px;
+    }
+`
 
 export default Landlord
