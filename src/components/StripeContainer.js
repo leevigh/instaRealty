@@ -1,6 +1,7 @@
 import React from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
+import '../styles/StripeContainer.css'
 
 import CheckoutForm from './CheckoutForm'
 
@@ -10,9 +11,11 @@ const stripeTestPromise = loadStripe(PUBLIC_KEY)
 
 const Stripe = () => {
     return (
-        <Elements stripe={stripeTestPromise}>
-            <CheckoutForm />
-        </Elements>
+        <div className="stripe-container">
+            <Elements stripe={stripeTestPromise}>
+                <CheckoutForm />
+            </Elements>
+        </div>
     )
 }
 

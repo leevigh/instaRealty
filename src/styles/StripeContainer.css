@@ -1,0 +1,22 @@
+/* .stripe-container {
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem auto;
+}
+
+.stripe-container > .StripeElement {
+    margin-bottom: 1rem;
+} */
+
+.StripeElement {
+    border: 1px solid #eee;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.StripeElement--invalid {
+    border: 1px solid red;
+}

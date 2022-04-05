@@ -38,7 +38,7 @@ export const createRentalReview = createAsyncThunk('rental/create-rental-review'
     }
 })
 
-const initialState = {rentals: [], review: {}};
+const initialState = {status: "loading", rentals: [], review: {}};
 
 const rentalsSlice = createSlice({
     name: "rentals",
@@ -46,9 +46,11 @@ const rentalsSlice = createSlice({
     extraReducers: {
         [getRentals.fulfilled]: (state, action) => {
             state.rentals = action.payload
+            state.status = "done"
         },
 
         [getRentals.rejected]: (state) => {
+            state.status = "error";
             return state;
         },
 

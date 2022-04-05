@@ -37,6 +37,14 @@
     cursor: pointer;
 }
 
+.details-btn {
+    border: 1px solid green;
+}
+.details-btn:hover {
+    background-color: green;
+    color: white;
+}
+
 /* .listing-container {
     /* max-width: 1200px; */
     /* display: flex;

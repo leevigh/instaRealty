@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 // import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://instarealty.herokuapp.com/api/v1/'
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL
 let user = JSON.parse(localStorage.getItem('user'));
 if(user) {
   axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.token
