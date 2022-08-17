@@ -13,7 +13,7 @@ const BookRental = () => {
 
     return (
         <>
-            <Button onClick={onOpenModal} className="mx-3 book-btn" variant="default">Book</Button>
+            <Button onClick={onOpenModal} className="mx-3 border-2 border-green-500 text-green-500 rounded-md px-2" variant="default">Book Inspection</Button>
             <Modal className="booking-modal" open={open} onClose={onCloseModal} center>
                 <h3>Book this rental</h3>
                 <p>Some random text to make this as long as possible with a lot of things that don't make any sense</p>

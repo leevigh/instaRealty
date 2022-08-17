@@ -5,6 +5,8 @@ import './index.css';
 import App from './App';
 import store from './store/store';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 // import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
@@ -14,13 +16,17 @@ if(user) {
   axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.token
 }
 
+let persistor = persistStore(store)
+
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </BrowserRouter>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </BrowserRouter>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

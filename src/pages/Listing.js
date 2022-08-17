@@ -10,6 +10,7 @@ import { getRental } from '../store/selectedRentalSlice'
 
 import '../styles/Listing.css'
 import BookRental from '../components/BookRental'
+import PayRent from '../components/PayRent'
 
 const Listing = () => {
     const params = useParams()
@@ -22,6 +23,11 @@ const Listing = () => {
     const [lng, setLng] = useState(0)
     const [rating, setRating] = useState(1)
     const [comment, setComment] = useState('')
+    const [showMap, setShowMap] = useState('hidden')
+
+    const toggleMap = () => {
+        showMap === 'hidden' ? setShowMap('') : setShowMap('hidden');
+    }
     
     React.useEffect(() => {
         if(params.id && params.id !== "") {
@@ -62,12 +68,17 @@ const Listing = () => {
         <div>
             <Navigation />
             <div className="details-container">
-                <div className="details-container__image-map">
-                    <div className="property-image__container">
-                        <img className="property-image" src={rental && rental.propertyPhotos} alt={rental && rental.propertyType} />
+                <div className="details-container__image-map flex flex-col">
+                    <div className="w-full rounded-md mb-4">
+                        <img className="property-image rounded-md" src={rental && rental.propertyPhotos} alt={rental && rental.propertyType} />
                     </div>
 
-                    <div className="rental-map">
+                    <div>
+                        <button onClick={() => toggleMap()} className='bg-green-500 rounded-md w-full p-2 text-white'>
+                            {showMap === 'hidden' ? 'Show Map' : 'Hide Map'}
+                        </button>
+                    </div>
+                    <div className={`w-full ${showMap}`}>
                         <RentalMap center={{lat, lng}} />
                     </div>
                 </div>
@@ -81,10 +92,11 @@ const Listing = () => {
                             {/* <h4>{rental && rental.propertyType}</h4> */}
                             
                     </div>
-                    <div>
-                        <Link to={`payment`}>
+                    <div className='flex mb-4'>
+                        <PayRent amount={rental.price} />
+                        {/* <Link to={`payment`}>
                             <Button className="rent-btn" variant="default">Rent</Button>
-                        </Link>
+                        </Link> */}
                             <BookRental />
                     </div>
                 </div>
@@ -95,7 +107,7 @@ const Listing = () => {
                     <h3>Reviews</h3>
                     {rental && rental?.reviews?.length === 0 && <h5>No reviews</h5>}
                     <ListGroup variant='flush'>
-                        {rental && rental.reviews.map(review => (
+                        {rental && rental?.reviews.map(review => (
                             <ListGroup.Item key={review._id}>
                                 <strong>{review.name}</strong>
                                 <Rating value={review.rating} color="#f8e825" />
@@ -133,6 +145,7 @@ const Listing = () => {
                         ) 
                         : <h6>Please <Link to="/login">Login</Link> to write a review</h6>}
                     </ListGroup.Item>
+
                     <ul>
                         {/* {rental.reviews.map(review => {
                             <li key={review._id}>

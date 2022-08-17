@@ -4,16 +4,16 @@ import '../styles/Navigation.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import { logout } from '../store/auth'
-import { Container, Navbar, Offcanvas, Col, Row, Image } from 'react-bootstrap'
-import styled from 'styled-components'
+// import { Container, Navbar, Offcanvas, Col, Row, Image } from 'react-bootstrap'
+// import styled from 'styled-components'
 
 const Navigation = () => {
     const {user, isLoggedIn} = useSelector(state => state.auth)
 
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState('hidden');
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleClose = () => setShow(false);
+    const handleShow = () => show === 'hidden' ? setShow('') : setShow('hidden');
 
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -22,94 +22,51 @@ const Navigation = () => {
         dispatch(logout())
     }
 
+    const changeBackground = () => {
+        if(window.scrollY >= 80) {
+            setShow('hidden')
+        }
+    }
+
+    // window.addEventListener('scroll', changeBackground)
+
     return (
-        // <div style={{margin: '0', padding: '0'}}>
-            // <Container>
-                <Nav>
-                    <div style={{  width: "2rem"}}>
-                        <img onClick={handleShow} className="container__menu-icon" src={menu} alt="menu icon"/>
+        <>
+            <nav className='flex justify-between items-center p-6 z-20 bg-white sticky top-0'>
+                <div>
+                    <Link to="/">Instarealty</Link>
+                </div>
+
+                <div className='flex items-center'>
+                    <button className='border-2 border-green-500 rounded-md w-24 p-2 mr-4 bg-green-500 text-white'>
+                        <Link to="/register">Sign up</Link>
+                    </button>
+                    <div className='flex flex-col w-8' onClick={() => handleShow()}>
+                        {show === 'hidden' ?
+                            <>
+                                <div className='border-solid border-2 border-stone-900 mb-1'></div>
+                                <div className='border-solid border-2 border-stone-900 mb-1'></div>
+                                <div className='border-solid border-2 border-stone-900 mb-1'></div>
+                            </>
+                        :
+                            <>
+                                <div className='border-solid border-2 border-stone-900 -mt-2 close-top'></div>
+                                <div className='border-solid border-2 border-stone-900 -mb-5 close-bottom'></div>
+                            </>
+                        }
                     </div>
-
-                    <div>
-                        <Link to="/" style={{textDecoration: 'none', color: 'black'}}>
-                        <span style={{color: 'green'}}>🏘 <strong>InstaRealty</strong></span>
-                        </Link>
-                    </div>
-
-                    <div className="nav__container">
-
-                        {!isLoggedIn ? 
-                        <div className="nav__container-links">
-                            <div className="nav__container-linkReg"><Link to="/register" style={{textDecoration: 'none', color: 'black', }}>Register</Link></div>
-                            <div className="nav__container-linkLog"><Link to="/login" style={{textDecoration: 'none', color: 'black'}}>Login</Link></div>
-                        </div> : <div></div>}
-
-                        {/* {isLoggedIn && user.role === "landlord" ? 
-                            <div>
-                                <Link to="/create-rental">
-                                    <Button>
-                                        + Create Rental
-                                    </Button>
-                                </Link>
-                            </div> 
-                            
-                            : 
-                            <div></div>
-                        } */}
-                        
-                    </div>
-                    {/* </Col> */}
-
-                    <Offcanvas show={show} onHide={handleClose}>
-                        <Offcanvas.Header closeButton>
-                        <Offcanvas.Title><span>🏘 InstaRealty</span></Offcanvas.Title>
-                        </Offcanvas.Header>
-                        <Offcanvas.Body>
-                            <Row>
-                                <Col xs={3} md={3} sm={3}>
-                                    <Image src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__340.png" width="100px" height="100px" roundedCircle />
-                                </Col>
-                                <Col className="mx-5">
-                                    <h3>{user && user.name}</h3>
-                                    {isLoggedIn ? <Button className="btn btn-danger" onClick={handleLogout}>Logout</Button> : <Button className="" onClick={() => navigate('../login')}>Login</Button>}
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    {isLoggedIn && user.role === "landlord" ? 
-                                        <div>
-                                            <Link to="/create-rental">
-                                                <Button>
-                                                    + Create Rental
-                                                </Button>
-                                            </Link>
-                                        </div> 
-                                        
-                                        : 
-                                        <div></div>
-                                    }
-                                </Col>
-                            </Row>
-                        </Offcanvas.Body>
-                    </Offcanvas>
-                </Nav>
-            // </Container>
-        // </div>
+                </div>
+            </nav>
+            <div className={`p-6 flush ${show} z-20 fixed top-18 bg-white w-full md:hidden`}>
+                <ul>
+                    <li className='pb-4'><Link to='/'>Home</Link></li>
+                    <li className='pb-4'><Link to='/rentals'>Listings</Link></li>
+                    <li className='pb-4'><Link to='/about'>About us</Link></li>
+                    <li className='pb-4'><Link to='/profile'>Profile</Link></li>
+                </ul>
+            </div>
+        </>
     )
 }
-
-const Nav = styled.nav`
-    margin: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid gray;
-    padding: 2rem;
-`
-
-const Button = styled.button`
-    padding: 0.3rem;
-`
 
 export default Navigation
