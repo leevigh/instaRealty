@@ -89,15 +89,10 @@ const Listing = () => {
                             {rental && rental.pluscode ? 
                             <p>Plus Code: <a href={`https://www.google.com/maps/place/${rental.pluscode}`} target="_blank" rel="noreferrer"><strong>{rental && rental.pluscode}</strong></a></p> : '' }
                             <p>{rental && rental.address}</p>
-                            {/* <h4>{rental && rental.propertyType}</h4> */}
-                            
                     </div>
                     <div className='flex mb-4'>
                         <PayRent amount={rental.price} />
-                        {/* <Link to={`payment`}>
-                            <Button className="rent-btn" variant="default">Rent</Button>
-                        </Link> */}
-                            <BookRental />
+                        <BookRental />
                     </div>
                 </div>
 
@@ -125,14 +120,6 @@ const Listing = () => {
                                 <Form.Group controlId='rating'>
                                     <Form.Label>Rating</Form.Label>
                                     <Form.Control name="rating" value={rating} onChange={e => setRating(e.target.value)} type="number" min="1" max="5"></Form.Control>
-                                    {/* <Form.Control as="select" value={rating} onChange={(e) => setRating(e.target.value)}>
-                                        <option value=''>Select...</option>
-                                        <option value='1'>1 - Poor</option>
-                                        <option value='2'>2 - Fair</option>
-                                        <option value='3'>3 - Good</option>
-                                        <option value='4'>4 - Very Good</option>
-                                        <option value='5'>5 - Excellent</option>
-                                    </Form.Control> */}
                                 </Form.Group>
                                 <Form.Group controlId="comment">
                                     <Form.Label>Comment</Form.Label>
@@ -147,11 +134,7 @@ const Listing = () => {
                     </ListGroup.Item>
 
                     <ul>
-                        {/* {rental.reviews.map(review => {
-                            <li key={review._id}>
-                                jump
-                            <li>
-                        })} */}
+                        
                     </ul>
                 </div>
             </div>

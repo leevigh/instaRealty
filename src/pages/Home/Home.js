@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { GiLightBackpack } from 'react-icons/gi'
-import { SiHandshake } from 'react-icons/si'
 
 import Navigation from '../../components/Navigation'
 import Explore from '../../components/home/Explore'
@@ -58,101 +56,6 @@ const Home = () => {
   )
 }
 
-const Hero = styled.div`
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    background: url('https://images.unsplash.com/photo-1460317442991-0ec209397118?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
-    background-position: center;
-
-    .hero-heading {
-        font-size: 2rem;
-        text-align: left;
-        color: #EDFFD9;
-        font-weight: 700;
-    }
-
-    .hero-action {
-
-        a {
-            text-decoration: none;
-            color: #EDFFD9;
-        }
-
-        width: 100%;
-        margin-top: 4rem;
-
-        &__button {
-            border: none;
-            padding: 1.3rem;
-            background: #DC965A;
-            border-radius: 1rem;
-        }
-    }
-
-    @media(min-width: 600px) {
-        background-repeat: no-repeat;
-        background: black;
-        height: 80vh;
-        display: flex;
-        align-items: flex-start;
-
-        .hero-heading {
-            text-align: left;
-        }
-    }
-`
-
-const Services = styled.section`
-    padding: 2rem;
-
-    .service-student {
-        padding: 1rem;
-        border-radius: 1rem;
-        margin: 2rem 0;
-        box-shadow: 2px 4px 5px grey;
-        font-weight: 400;
-        font-size: 0.8rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        &__icon {
-            font-size: 4rem;
-            color: darkblue;
-        }
-    }
-
-    .service-ycm {
-        padding: 1rem;
-        border-radius: 1rem;
-        margin: 2rem 0;
-        box-shadow: 2px 4px 5px grey;
-        font-weight: 400;
-        font-size: 0.8rem;
-    }
-
-    .service-other {
-        padding: 1rem;
-        border-radius: 1rem;
-        margin: 2rem 0;
-        box-shadow: 2px 4px 5px grey;
-        font-weight: 400;
-        font-size: 0.8rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        &__icon {
-            font-size: 4rem;
-            color: darkblue;
-        }
-    }
-`
 
 const ExploreSection = styled.section`
     h2 {
