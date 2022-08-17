@@ -4,7 +4,6 @@ import { Route, Routes, useNavigate, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import Landlord from './pages/Landlord';
 import Login from './pages/Login';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './pages/Register';
 import Listings from './pages/Listings/Listings';
 import RentalForm from './components/RentalForm';

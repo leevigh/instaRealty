@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import menu from '../icons/menu.svg'
 import '../styles/Navigation.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
@@ -15,18 +14,18 @@ const Navigation = () => {
     // const handleClose = () => setShow(false);
     const handleShow = () => show === 'hidden' ? setShow('') : setShow('hidden');
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate();
+    // const dispatch = useDispatch()
+    // const navigate = useNavigate();
 
-    const handleLogout = () => {
-        dispatch(logout())
-    }
+    // const handleLogout = () => {
+    //     dispatch(logout())
+    // }
 
-    const changeBackground = () => {
-        if(window.scrollY >= 80) {
-            setShow('hidden')
-        }
-    }
+    // const changeBackground = () => {
+    //     if(window.scrollY >= 80) {
+    //         setShow('hidden')
+    //     }
+    // }
 
     // window.addEventListener('scroll', changeBackground)
 
