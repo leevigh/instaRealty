@@ -67,3 +67,10 @@
 .container__toggle-close {
     padding: 0.5rem;
 }
+
+.close-top{
+    transform: translateY(20%) rotate(135deg);
+}
+.close-bottom {
+    transform: translateY(-20%) rotate(225deg);
+}

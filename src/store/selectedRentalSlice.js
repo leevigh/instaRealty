@@ -29,7 +29,7 @@ const selectedRentalSlice = createSlice({
             return state
         },
     }
-})
+});
 
 const { reducer } = selectedRentalSlice;
 

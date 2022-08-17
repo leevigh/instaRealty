@@ -44,7 +44,7 @@ const Listings = () => {
                                 <Rating value={rental.ratings} text={`(${rental.numReviews})`} color="#f8e825" />
                             </div>
                             <div>
-                                <Link to={`/${rental._id}`}>
+                                <Link to={`/rentals/${rental._id}`}>
                                 <Button 
                                     // onClick={() => dispatch(getRental(rental._id))} 
                                     onClick={() => navigate(`/${rental._id}`)}
